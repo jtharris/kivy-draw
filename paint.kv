@@ -1,0 +1,28 @@
+BoxLayout:
+    orientation: 'horizontal'
+    spacing: 10
+
+    BoxLayout:
+        size_hint: (.25, 1)
+        orientation: 'vertical'
+        padding: 20
+
+        Button:
+            text: 'Line'
+
+        Button:
+            text: 'Circle'
+
+        Button:
+            text: 'Clear'
+
+    PaintCanvas:
+        id: paint_canvas
+        size_hint: (.5, 1)
+
+        paint_history: paint_history
+
+    PaintHistory:
+        id: paint_history
+        size_hint: (.25, 1)
+        padding: 20
