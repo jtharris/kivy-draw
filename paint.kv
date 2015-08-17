@@ -1,28 +1,42 @@
 BoxLayout:
-    orientation: 'horizontal'
+    orientation: 'vertical'
     spacing: 10
 
     BoxLayout:
-        size_hint: (.25, 1)
-        orientation: 'vertical'
+        size_hint: (1, .8)
+
+        BoxLayout:
+            size_hint: (.15, 1)
+            orientation: 'vertical'
+            padding: 20
+
+            ToggleButton:
+                text: 'Draw Line'
+
+            ToggleButton:
+                text: 'Draw Circle'
+
+            Button:
+                text: 'Clear History'
+                on_press: paint_canvas.clear(); paint_history.clear()
+
+            Button:
+                text: 'Redraw'
+                on_press: paint_canvas.clear(); paint_history.redraw()
+
+            Button:
+                text: 'Undo'
+                on_press: paint_history.undo_last()
+
+        PaintCanvas:
+            id: paint_canvas
+            size_hint: (.6, 1)
+
+            paint_history: paint_history
+
+    ScrollView:
+        size_hint: (1, .2)
         padding: 20
 
-        Button:
-            text: 'Line'
-
-        Button:
-            text: 'Circle'
-
-        Button:
-            text: 'Clear'
-
-    PaintCanvas:
-        id: paint_canvas
-        size_hint: (.5, 1)
-
-        paint_history: paint_history
-
-    PaintHistory:
-        id: paint_history
-        size_hint: (.25, 1)
-        padding: 20
+        PaintHistory:
+            id: paint_history

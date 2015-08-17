@@ -1,7 +1,6 @@
 from kivy.graphics import Color, Ellipse, Line
 
 
-# Note that the canvas is the receiver in this scenario
 class LinePreview:
 
     def __init__(self, canvas):
@@ -26,6 +25,7 @@ class LinePreview:
         return LineCommand(self.canvas, self.start_coords, self.end_coords)
 
 
+# Note that the canvas is the receiver in this scenario
 class LineCommand:
 
     def __init__(self, canvas, start, end):
@@ -37,6 +37,10 @@ class LineCommand:
         with self.canvas:
             self.line = Line(points=self.start + self.end)
 
+    def undo(self):
+        self.canvas.remove(self.line)
+
     def __str__(self):
-        return 'Line:  {} -> {}'.format(self.start, self.end)
+        points = [int(point) for point in (self.start + self.end)]
+        return 'Line:  ({}, {}) -> ({}, {})'.format(*points)
 
