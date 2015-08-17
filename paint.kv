@@ -12,9 +12,14 @@ BoxLayout:
 
             ToggleButton:
                 text: 'Draw Line'
+                group: 'mode'
+                state: 'down'
+                on_press: paint_canvas.preview_class = 'LinePreview'
 
             ToggleButton:
                 text: 'Draw Circle'
+                group: 'mode'
+                on_press: paint_canvas.preview_class = 'CirclePreview'
 
             Button:
                 text: 'Clear History'
@@ -40,3 +45,4 @@ BoxLayout:
 
         PaintHistory:
             id: paint_history
+
